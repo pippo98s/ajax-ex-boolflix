@@ -1,29 +1,39 @@
 $(document).ready( function (){
   
-  
-  
-
   $("button").click( function(){
     $.ajax({
-      url: "https://api.themoviedb.org/3/search/movie?api_key=ceb354f968c94e697decd423b41de216&query=" + $("input").val(),
+      url: "https://api.themoviedb.org/3/search/movie",
       method : "GET",
+      data : {
+        api_key: "ceb354f968c94e697decd423b41de216",
+        query: $("input").val(),
+        language : "it-IT",
+      },
       success : function (data){
         // ripulisco l'output ad ogni click
         $(".film-container").html(" ");
         console.log(data.results);
-        console.log($("input").val());
         
+        var source = $("#entry-template").html();
+        var template = Handlebars.compile(source);
+
         for (var key in data.results) {
           var item = data.results[key];
-          console.log(item.title);
-          var source = $("#entry-template").html();
-          var template = Handlebars.compile(source);
-          var context = { titolo: item.title, originale: item.original_title, lingua: item.original_language, voto: item.vote_average};
+          var mediaVoto = Math.floor(Math.round(item.vote_average) / 2);
+
+          var context = { 
+            titolo: item.title,
+            originale: item.original_title,
+            lingua: item.original_language, 
+            voto: mediaVoto,
+            stelle: generatorStars(mediaVoto)
+          };
+          
           var html = template(context);
           $(".film-container").append(html);
-        }
+        };
+        
       },
-      
       error : function() {
         alert("404")
       }
@@ -31,3 +41,15 @@ $(document).ready( function (){
   })
 
 });
+
+// funzione per creare le stelle
+function generatorStars(num){
+  var array = [];
+  for (var i = 0; i < num; i++){
+    array.push("<i class='fas fa-star'></i>")
+  };
+  while(array.length < 5){
+    array.push("<i class='far fa-star'></i>")
+  };
+  return array.join("")
+}
