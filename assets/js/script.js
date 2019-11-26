@@ -24,7 +24,8 @@ $(document).ready( function (){
           var context = { 
             titolo: item.title,
             originale: item.original_title,
-            lingua: item.original_language, 
+            lingua: item.original_language,
+            flag: selectFlag(item.original_language),
             voto: mediaVoto,
             stelle: generatorStars(mediaVoto)
           };
@@ -52,4 +53,21 @@ function generatorStars(num){
     array.push("<i class='far fa-star'></i>")
   };
   return array.join("")
+}
+
+// funzione per le bandiere
+function selectFlag(lang){
+  if (lang == "en"){
+    return "assets/img/uk.png"
+  } else if ( lang == "it"){
+    return "assets/img/it.png"
+  } else if (lang == "us") {
+    return "assets/img/us.png"
+  } else if (lang == "jp") {
+    return "assets/img/jp.png"
+  } else if (lang == "cn") {
+    return "assets/img/cn.png"
+  } else if (lang == "fr") {
+    return "assets/img/fr.png"
+  }
 }
