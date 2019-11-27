@@ -23,6 +23,7 @@ $(document).ready( function (){
           var mediaVoto = Math.floor(Math.round(item.vote_average) / 2);
 
           var context = { 
+            poster: "w185/" + item.poster_path,
             titolo: item.title,
             originale: item.original_title,
             lingua: item.original_language,
@@ -64,6 +65,7 @@ $(document).ready( function (){
           var mediaVoto = Math.floor(Math.round(item.vote_average) / 2);
 
           var context = {
+            poster: "w185/" + item.poster_path,
             titolo: item.name,
             originale: item.original_name,
             lingua: item.original_language,
