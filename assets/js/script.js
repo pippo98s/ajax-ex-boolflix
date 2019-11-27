@@ -85,6 +85,8 @@ $(document).ready( function (){
 
 });
 
+
+
 // funzione per creare le stelle
 function generatorStars(num){
   var array = [];
@@ -99,17 +101,12 @@ function generatorStars(num){
 
 // funzione per le bandiere
 function selectFlag(lang){
-  if (lang == "en"){
-    return "assets/img/uk.png"
-  } else if ( lang == "it"){
-    return "assets/img/it.png"
-  } else if (lang == "us") {
-    return "assets/img/us.png"
-  } else if (lang == "ja") {
-    return "assets/img/jp.png"
-  } else if (lang == "cn") {
-    return "assets/img/cn.png"
-  } else if (lang == "fr") {
-    return "assets/img/fr.png"
+  var array = ["en", "it", "us", "ja", "fr"]
+  var i = 0;
+  while (i < array.length) {
+    if (lang == array[i]) {
+      return "assets/img/" + array[i] + ".png"
+    }
+    i++;
   }
 }
