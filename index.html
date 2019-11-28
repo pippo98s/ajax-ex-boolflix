@@ -10,9 +10,15 @@
   <title>BoolFlix</title>
 </head>
 <body>
+  <header>
+    <img src="assets/img/logo.png" alt="">
+    <div class="search-container">
+      <input type="text" class="search-bar"  placeholder="cerca film">
+      <button>cerca</button>
+    </div>
+    
+  </header>
   
-  <input type="text" placeholder="cerca film">
-  <button>cerca</button>
   
   <h2>film</h2>
   <div class="film-container"></div>
@@ -25,13 +31,17 @@
   <!-- template -->
   <script src="https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/4.1.2/handlebars.min.js"></script>
   <script id="entry-template" type="text/x-handlebars-template">
-    <ul class="film">
-      <li><img src="https://image.tmdb.org/t/p/{{poster}}" alt=""></li>
-      <li>titolo: {{titolo}}</li>
-      <li>titolo originale: {{originale}}</li>
-      <li>lingua: {{lingua}} <img src="{{flag}}" alt=""></li>
-      <li>voto: {{voto}} {{{stelle}}}</li>
-    </ul>
+    <div class="elem">
+      <img class="poster" src="{{poster}}" alt="">
+      <div class="info">
+        <p>titolo: {{titolo}}</p>
+        <p>titolo originale: {{originale}}</p>
+        <p>lingua: {{lingua}} <img src="{{flag}}" alt=""></p>
+        <p>voto: {{voto}}</p> 
+        <p>{{{stelle}}}</p>
+      </div>
+      
+    </div>
   </script>
 
 

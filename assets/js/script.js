@@ -13,7 +13,6 @@ $(document).ready( function (){
       success : function (data){
         // ripulisco l'output ad ogni click
         $(".film-container").html(" ");
-        console.log(data.results);
         
         var source = $("#entry-template").html();
         var template = Handlebars.compile(source);
@@ -23,7 +22,7 @@ $(document).ready( function (){
           var mediaVoto = Math.floor(Math.round(item.vote_average) / 2);
 
           var context = { 
-            poster: "w185/" + item.poster_path,
+            poster: poster(item.poster_path , "w185") ,
             titolo: item.title,
             originale: item.original_title,
             lingua: item.original_language,
@@ -36,6 +35,9 @@ $(document).ready( function (){
           $(".film-container").append(html);
         };
         
+        // if (data.results.length == 0){
+        //   $("h2").text("0 risultati per : " + $("input").val())
+        // }
       },
       error : function() {
         alert("404")
@@ -65,7 +67,7 @@ $(document).ready( function (){
           var mediaVoto = Math.floor(Math.round(item.vote_average) / 2);
 
           var context = {
-            poster: "w185/" + item.poster_path,
+            poster: poster(item.poster_path, "w185"),
             titolo: item.name,
             originale: item.original_name,
             lingua: item.original_language,
@@ -110,5 +112,14 @@ function selectFlag(lang){
       return "assets/img/" + array[i] + ".png"
     }
     i++;
+  }
+}
+
+// funzione per mostare la copertina
+function poster(img , dimensione){
+  if (img !== null){
+    return "https://image.tmdb.org/t/p/" + dimensione + "/" + img
+  } else{
+    return "assets/img/noimg.png"
   }
 }
