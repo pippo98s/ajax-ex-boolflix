@@ -33,7 +33,7 @@ function getData(url, input, type) {
     query: (type == "movie" || type == "tv" ? input : deleteQuery),
     language: "it-IT"
   }
-  deleteQuery = delete dataUrl["query"];
+  deleteQuery = delete dataUrl["deleteQuery"];
   $.ajax({
     url: url,
     method: "GET",
