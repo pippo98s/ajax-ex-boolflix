@@ -1,6 +1,6 @@
 $(document).ready( function (){
   
-  test();
+  popular();
 
   $("button").click( function(){
     search()
@@ -10,12 +10,11 @@ $(document).ready( function (){
 
 
 // blocco funzioni
-function test() {
+function popular() {
   var urlTopMovie = "https://api.themoviedb.org/3/movie/popular";
   var urlTopTv = "https://api.themoviedb.org/3/tv/popular";
-  var q = $("input").val();
-  getDataTest(urlTopMovie, 'movieTop');
-  getDataTest(urlTopTv, q, 'tvTop');
+  getData(urlTopMovie, "", 'movieTop');
+  getData(urlTopTv, "", 'tvTop');
 }
 
 function search() {
@@ -26,35 +25,19 @@ function search() {
   getData(urlTv, q, 'tv');
 }
 
-function getData(url, query, type) {
+function getData(url, input, type) {
   var apiKey = "ceb354f968c94e697decd423b41de216";
+  var deleteQuery;
+  var dataUrl = {
+    api_key: apiKey,
+    query: (type == "movie" || type == "tv" ? input : deleteQuery),
+    language: "it-IT"
+  }
+  deleteQuery = delete dataUrl["query"];
   $.ajax({
     url: url,
     method: "GET",
-    data: {
-      api_key: apiKey,
-      query: query,
-      language: "it-IT"
-    },
-    success: function (data) {
-      var elements = data.results;
-      print(type, elements);
-    },
-    error: function (err) {
-      console.log(err);
-    }
-  });
-}
-
-function getDataTest(url, type) {
-  var apiKey = "ceb354f968c94e697decd423b41de216";
-  $.ajax({
-    url: url,
-    method: "GET",
-    data: {
-      api_key: apiKey,
-      language: "it-IT"
-    },
+    data: dataUrl,
     success: function (data) {
       var elements = data.results;
       print(type, elements);
@@ -91,9 +74,6 @@ function print(type, elems) {
     target.append(html);
   };
 }
-
-
-
 
 // funzione per creare le stelle
 function generatorStars(num){
