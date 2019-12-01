@@ -73,6 +73,33 @@ function print(type, elems) {
     var html = template(context);
     target.append(html);
   };
+
+  
+  // test
+  $ShowHideMore = target;
+  $ShowHideMore.each(function () {
+    var $times = $(this).children('.elem');
+    if ($times.length > 7) {
+      target.append(" <p class='message'></p>");
+      $ShowHideMore.children(':nth-of-type(n+8)').addClass('moreShown').hide();
+      $(this).find('p.message').addClass('more-times').html('+ Show more');
+    }
+  });
+  
+  var cont = (type == "movie" || type == 'movieTop' ? ".film-container" : ".tv-container");
+  console.log(cont);
+  $(document).on('click', cont + ' > .message', function () {
+    var that = $(this);
+    console.log(that);
+    var thisParent = that.closest(cont);
+    if (that.hasClass('more-times')) {
+      thisParent.find('.moreShown').show();
+      that.toggleClass('more-times', 'less-times').html('- Show less');
+    } else {
+      thisParent.find('.moreShown').hide();
+      that.toggleClass('more-times', 'less-times').html('+ Show more');
+    } 
+  });
 }
 
 // funzione per creare le stelle
@@ -109,3 +136,6 @@ function poster(img , dimensione){
     return "assets/img/noimg.png"
   }
 }
+
+
+
