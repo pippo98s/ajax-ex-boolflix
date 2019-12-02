@@ -4,7 +4,11 @@ $(document).ready( function (){
 
   $("button").click( function(){
     search()
-  })
+  });
+    
+  showOrHide('.film-container');
+
+  showOrHide('.tv-container');
 
 });
 
@@ -74,31 +78,30 @@ function print(type, elems) {
     target.append(html);
   };
 
-  
-  // test
   $ShowHideMore = target;
   $ShowHideMore.each(function () {
     var $times = $(this).children('.elem');
     if ($times.length > 7) {
       target.append(" <p class='message'></p>");
       $ShowHideMore.children(':nth-of-type(n+8)').addClass('moreShown').hide();
-      $(this).find('p.message').addClass('more-times').html('+ Show more');
+      $(this).find('p.message').addClass('more-times').text('+ Show more');
     }
   });
-  
-  var cont = (type == "movie" || type == 'movieTop' ? ".film-container" : ".tv-container");
-  console.log(cont);
-  $(document).on('click', cont + ' > .message', function () {
+}
+
+// funzione per show more/show less
+function showOrHide(container){
+  $(document).on('click', container +' > .message', function () {
     var that = $(this);
-    console.log(that);
-    var thisParent = that.closest(cont);
+    console.log('click message tv', that);
+    var thisParent = that.closest(container);
     if (that.hasClass('more-times')) {
       thisParent.find('.moreShown').show();
-      that.toggleClass('more-times', 'less-times').html('- Show less');
+      that.removeClass('more-times').addClass('less-times').text('- Show less');
     } else {
       thisParent.find('.moreShown').hide();
-      that.toggleClass('more-times', 'less-times').html('+ Show more');
-    } 
+      that.addClass('more-times').removeClass('less-times').text('+ Show more');
+    }
   });
 }
 
