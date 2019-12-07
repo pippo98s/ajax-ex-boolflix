@@ -3,7 +3,13 @@ $(document).ready( function (){
   popular();
 
   $("button").click( function(){
-    search()
+    search();
+  });
+
+  $("body").keydown(function (e) {
+    if (e.keyCode == 13) { // enter
+      search();
+    }
   });
     
   showOrHide('.film-container');
@@ -55,6 +61,7 @@ function getData(url, input, type) {
 function print(type, elems) {
   var target = (type == "movie" || type == 'movieTop' ? $(".film-container") : $(".tv-container"));
   target.html(" ");
+  $("input").val("");
   var source = $("#entry-template").html();
   var template = Handlebars.compile(source);
 
@@ -139,6 +146,3 @@ function poster(img , dimensione){
     return "assets/img/noimg.png"
   }
 }
-
-
-
