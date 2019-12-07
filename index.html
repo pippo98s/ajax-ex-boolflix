@@ -11,42 +11,35 @@
 </head>
 <body>
   <header>
-    <img src="assets/img/logo.png" alt="">
+    <img id="logo" src="assets/img/logo.png" alt="img">
     <div class="search-container">
-      <input type="text" class="search-bar"  placeholder="cerca film">
+      <input type="text" placeholder="cerca film">
       <button>cerca</button>
     </div>
-    
   </header>
   
-  <h2>film</h2>
-  <div class="elem-container">
+  <main>
+    <h2>film</h2>
     <div class="film-container"></div>
-  </div>
+    
+    <h2>serie tv</h2>
+    <div class="tv-container"></div>
+  </main>
   
-  <h2>serie tv</h2>
-  <div class="elem-container">
-   <div class="tv-container"></div>
-  </div>
-  
-
   <!-- template -->
   <script src="https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/4.1.2/handlebars.min.js"></script>
   <script id="entry-template" type="text/x-handlebars-template">
     <div class="elem">
-      <img class="poster" src="{{poster}}" alt="">
+      <img class="poster" src="{{poster}}" alt="img">
       <div class="info">
-        <p>titolo: {{titolo}}</p>
-        <p>titolo originale: {{originale}}</p>
-        <p>lingua: {{lingua}} <img src="{{flag}}" alt=""></p>
-        <p>voto: {{voto}}</p> 
-        <p>{{{stelle}}}</p>
+        <p class="test">titolo: <span>{{titolo}}</span></p>
+        <p class="test">titolo originale: <span>{{originale}}</span></p>
+        <p class="test">lingua: <span>{{lingua}}</span> <img src="{{flag}}" alt="img"></p>
+        <p class="test">voto: <span>{{voto}}</span></p> 
+        <p class="star">{{{stelle}}}</p>
       </div>
-      
     </div>
   </script>
-
-
 
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
   <script src="assets/js/script.js"></script>
