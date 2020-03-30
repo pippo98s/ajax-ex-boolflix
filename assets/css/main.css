@@ -2,6 +2,12 @@
   margin: 0;
   padding: 0;
   box-sizing: border-box;
+  font-family: bebas-kai, sans-serif;
+}
+
+@font-face {
+  font-family: "bebas-kai" ;
+  src: url(https://use.typekit.net/ime0bdu.css);
 }
 
 header{
@@ -16,17 +22,44 @@ header{
 
 #logo{
   margin: auto;
+  max-width: 250px;
 }
 
 .search-container{
   display: flex;
   width: max-content;
+  position: relative;
   align-items: center;
   margin: auto;
+  border-radius: 40px;
+  height: 40px;
+  padding: 5px 10px;
+  background-color: #fff;
+  border: 3px solid #dc1a28;
+}
+
+#search-inp{
+  border: 0;
+  width: calc(100% - 40px);
+  outline: none;
+}
+
+#search-btn{
+  background-color: #dc1a28;
+  border: 0;
+  height: 50px;
+  width: 50px;
+  position: absolute;
+  right: -3px;
+  border-radius: 50%;
+  font-size: medium;
+  cursor: pointer;
+  outline: none;
 }
 
 main{
   background-color: #000;
+  min-height: calc(100vh - 103px);
 }
 
 h2{
@@ -40,6 +73,15 @@ h2{
   flex-wrap: wrap;
   width: 100%;
   height: 100%;
+}
+
+.alert{
+  text-align: center;
+  width: 50%;
+  margin: 20px auto;
+  padding: 30px 0;
+  border-radius: 40px;
+  background-color: #dc1a28;
 }
 
 .poster{
@@ -59,6 +101,7 @@ h2{
   display: none;
   width: 100%;
   height: 250px;
+  overflow: auto;
   position: absolute;
   left: 0;
   top: 0;
@@ -71,11 +114,19 @@ h2{
   background-color: #000;
 }
 
-.test{
+.info-item{
   color: #dc1a28;
+  padding: 5px 0;
+  text-transform: capitalize;
 }
 
-.test span{
+.info-item.title{
+  text-align: center;
+  font-weight: bold;
+  padding: 5px 0 15px 0;
+}
+
+.info-item span{
   color: #fff;
 }
 

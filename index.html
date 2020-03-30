@@ -13,8 +13,8 @@
   <header>
     <img id="logo" src="assets/img/logo.png" alt="img">
     <div class="search-container">
-      <input type="text" placeholder="cerca film">
-      <button>cerca</button>
+      <input id="search-inp" type="text" placeholder="cerca film">
+      <button id="search-btn" class="fas fa-search"></button>
     </div>
   </header>
   
@@ -32,10 +32,12 @@
     <div class="elem">
       <img class="poster" src="{{poster}}" alt="img">
       <div class="info">
-        <p class="test">titolo: <span>{{titolo}}</span></p>
-        <p class="test">titolo originale: <span>{{originale}}</span></p>
-        <p class="test">lingua: <span>{{lingua}}</span> <img src="{{flag}}" alt="img"></p>
-        <p class="test">voto: <span>{{voto}}</span></p> 
+        <p class="info-item title">{{titolo}}</p>
+        {{#if controllo}}
+        <p class="info-item">titolo originale: <span>{{originale}}</span></p>
+        {{/if}}
+        <p class="info-item">lingua: <span>{{lingua}}</span> <img src="{{flag}}" alt="img"></p>
+        <p class="info-item">voto: <span>{{voto}}</span></p> 
         <p class="star">{{{stelle}}}</p>
       </div>
     </div>

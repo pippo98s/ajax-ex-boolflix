@@ -50,7 +50,14 @@ function getData(url, input, type) {
     data: dataUrl,
     success: function (data) {
       var elements = data.results;
-      print(type, elements);
+      console.log(elements.length);
+      if (type == 'movie' && elements.length == 0){
+        $('main .film-container').html('<h2 class="alert">nessun film trovato</h2>');
+      } else if (type == 'tv' && elements.length == 0){
+        $('main .tv-container').html('<h2 class="alert">nessuna serie tv trovata</h2>');
+      } else {
+        print(type, elements);
+      }
     },
     error: function (err) {
       console.log(err);
@@ -70,14 +77,19 @@ function print(type, elems) {
     var title = (type == "movie" || type == 'movieTop' ? item.title : item.name);
     var originalTitle = (type == "movie" || type == 'movieTop' ? item.original_title : item.original_name);
     var mediaVoto = Math.floor(Math.round(item.vote_average) / 2);
+    var controllo = false;
+
+    if (title !== originalTitle)
+      controllo = true
 
     var context = {
+      controllo: controllo,
       poster: poster(item.poster_path, "w185"),
       titolo: title,
       originale: originalTitle,
       lingua: item.original_language,
       flag: selectFlag(item.original_language),
-      voto: mediaVoto,
+      voto: item.vote_average,
       stelle: generatorStars(mediaVoto)
     };
 
@@ -85,7 +97,7 @@ function print(type, elems) {
     target.append(html);
   };
 
-  $ShowHideMore = target;
+  var $ShowHideMore = target;
   $ShowHideMore.each(function () {
     var $times = $(this).children('.elem');
     if ($times.length > 7) {
